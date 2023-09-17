@@ -13,12 +13,6 @@ class SubjectsTableSeeder extends Seeder
     public function run()
     {
         // 国語、数学、英語を追加
-        // テーブルをクリアする（既存のデータを削除）
-        //DB::table('Subjects')->truncate();
-
-        // DB::table('posts')->insert([
-        //     ['user_id' => '1', 'post' => '1つ目の投稿です'],
-        // ]);
 
         // データを挿入
         DB::table('subjects')->insert([
