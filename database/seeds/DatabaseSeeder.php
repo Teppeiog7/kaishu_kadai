@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         //作成したUsersTableSeederクラスをcallメソッドに渡す。
         $this->call(UsersTableSeeder::class);
-        //作成したUsersTableSeederクラスをcallメソッドに渡す。
+        //作成したSubjectsTableSeederクラスをcallメソッドに渡す。
         $this->call(SubjectsTableSeeder::class);
     }
 }
