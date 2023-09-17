@@ -13,27 +13,24 @@
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
-  @if ($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-  @endif
   <form action="{{ route('registerPost') }}" method="POST">
     <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
       <div class="w-25 vh-75 border p-3">
         <div class="register_form">
           <div class="d-flex mt-3" style="justify-content:space-between">
-            <div class="" style="width:140px">
+            <div class="" style="width:50%;">
+              @error('over_name')
+              <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+              @enderror
               <label class="d-block m-0" style="font-size:13px">姓</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
               </div>
             </div>
-            <div class="" style="width:140px">
+            <div class="" style="width:50%">
+              @error('under_name')
+              <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+              @enderror
               <label class=" d-block m-0" style="font-size:13px">名</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
@@ -41,13 +38,19 @@
             </div>
           </div>
           <div class="d-flex mt-3" style="justify-content:space-between">
-            <div class="" style="width:140px">
+            <div class="" style="width:50%">
+              @error('over_name_kana')
+              <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+              @enderror
               <label class="d-block m-0" style="font-size:13px">セイ</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana">
               </div>
             </div>
-            <div class="" style="width:140px">
+            <div class="" style="width:50%">
+              @error('under_name_kana')
+              <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+              @enderror
               <label class="d-block m-0" style="font-size:13px">メイ</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana">
@@ -55,6 +58,9 @@
             </div>
           </div>
           <div class="mt-3">
+            @error('mail_address')
+            <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+            @enderror
             <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
             <div class="border-bottom border-primary">
               <input type="mail" class="w-100 border-0 mail_address" name="mail_address">
@@ -174,15 +180,21 @@
           @endforeach
         </div>
         <div class="mt-3">
+          @error('password')
+          <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+          @enderror
           <label class="d-block m-0" style="font-size:13px">パスワード</label>
           <div class="border-bottom border-primary">
             <input type="password" class="border-0 w-100 password" name="password">
           </div>
         </div>
         <div class="mt-3">
+          @error('password_confirmation')
+          <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+          @enderror
           <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
           <div class="border-bottom border-primary">
-            <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation"> <!-- 2023年9月16日 nameを変更 -->
+            <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation"> <!-- nameを変更 -->
           </div>
         </div>
         <div class="mt-5 text-right">
