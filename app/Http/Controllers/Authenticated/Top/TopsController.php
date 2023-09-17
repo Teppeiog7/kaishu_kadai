@@ -9,10 +9,7 @@ use Auth;
 class TopsController extends Controller
 {
     public function show(){
-        //ログインユーザーの情報を抽出する。
-        $user = Auth::user();
-        //dd($user);
-        return view('authenticated.top.top',['user'=>$user]);
+        return view('authenticated.top.top');
     }
 
     public function logout(){
