@@ -16,7 +16,7 @@ class Subjects extends Model
     ];
 
     public function users(){
-        //SubjectsモデルはUserモデル(Userテーブル)の情報を持っている。
-        return $this->hasMany('App\Models\Users\User');// リレーションの定義
+        //SubjectsモデルはUserモデル(Userテーブル)の情報を属している
+        return $this->belongsToMany('App\Models\Users\User');// リレーションの定義
     }
 }
