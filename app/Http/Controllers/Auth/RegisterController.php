@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserFormRequest;//バリデーション処理の為追加
 use DB;
 
 use App\Models\Users\Subjects;
@@ -61,28 +62,10 @@ class RegisterController extends Controller
 
     //=====================================
 
-    //▼バリデーション処理
-    protected function validator(array $data)
+    public function registerPost(UserFormRequest $request)
     {
-        return Validator::make($data, [
-            'over_name' => 'required|string|min:2|max:10',
-            'under_name' => 'required|string|min:2|max:10',
-            'over_name_kana' => 'required|string|min:2|max:30',
-            'under_name_kana' => 'required|string|min:2|max:30',
-            'mail_address' => 'required|string|email|min:5|max:100|unique:users',
-            'password' => 'required|string|min:8|max:30|alpha_num|confirmed',
-        ]);
-    }
-
-    //=====================================
-
-    public function registerPost(Request $request)
-    {
-
         if($request->isMethod('post')){
-            $data = $request->input();
-            //dd($data);
-            $validator = $this->validator($data);
+            $validator = $request->rules();//rulesメソッドはUserFormRequest.phpから参照
             //dd($validator);
             if($validator->fails()){//もしvalidatorメソッドが失敗したら
             return redirect('/register')//registerへリダイレクト
