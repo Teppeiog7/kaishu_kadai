@@ -24,7 +24,7 @@ Route::group(['middleware' => ['guest']], function(){
 Route::group(['middleware' => 'auth'], function(){
     Route::namespace('Authenticated')->group(function(){
         Route::namespace('Top')->group(function(){
-            Route::get('/logout', 'TopsController@logout');
+            Route::get('/logout', 'TopsController@logout')->name('login');
             Route::get('/top', 'TopsController@show')->name('top.show');
         });
         Route::namespace('Calendar')->group(function(){
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/bulletin_board/input', 'PostsController@postInput')->name('post.input');
             Route::get('/bulletin_board/like', 'PostsController@likeBulletinBoard')->name('like.bulletin.board');
             Route::get('/bulletin_board/my_post', 'PostsController@myBulletinBoard')->name('my.bulletin.board');
-            Route::post('/bulletin_board/create', 'PostsController@postCreate')->name('post.create');
+            Route::post('/bulletin_board/create', 'PostsController@postCreate')->name('post.create');//postCreateメソッド
             Route::post('/create/main_category', 'PostsController@mainCategoryCreate')->name('main.category.create');
             Route::post('/create/sub_category', 'PostsController@subCategoryCreate')->name('sub.category.create');
             Route::get('/bulletin_board/post/{id}', 'PostsController@postDetail')->name('post.detail');

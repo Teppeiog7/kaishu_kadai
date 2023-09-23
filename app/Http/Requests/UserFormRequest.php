@@ -30,6 +30,9 @@ class UserFormRequest extends FormRequest
             'under_name_kana' => 'required|string|min:2|max:30',
             'mail_address' => 'required|string|email|min:5|max:100|unique:users',
             'password' => 'required|string|min:8|max:30|alpha_num|confirmed',
+            'sex' => 'required',
+            'birth_day' => 'required|date',
+            'role' => 'required',
         ];
     }
 

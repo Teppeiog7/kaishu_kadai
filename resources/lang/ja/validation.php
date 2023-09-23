@@ -145,7 +145,7 @@ return [
     |
     */
 
-    //  2023年9月16日 下記キー名と値を変更
+    //下記キー名と値を変更
     'attributes' => [
         'over_name' => '姓名',
         'under_name' => '名前',
@@ -153,6 +153,7 @@ return [
         'under_name_kana' => '名前のフリガナ',
         'mail_address' => 'メール',
         'password' => 'パスワード',
+        'birth_day' => '生年月日',
     ],
 
 ];
