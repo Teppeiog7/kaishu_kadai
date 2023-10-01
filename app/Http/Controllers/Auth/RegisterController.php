@@ -67,9 +67,9 @@ class RegisterController extends Controller
 
     public function registerPost(UserFormRequest $request)
     {
-        dd($request);
+        //dd($request);
         if($request->isMethod('post')){
-            $validator = $request -> rules();//rulesメソッドはUserFormRequest.phpから参照
+            $validator = $request -> rules();;//rulesメソッドはUserFormRequest.phpから参照
             //dd($validator);
             if($validator->fails()){//もしvalidatorメソッドが失敗したら
             return redirect('/register')//registerへリダイレクト

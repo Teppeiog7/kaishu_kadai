@@ -16,7 +16,7 @@ Route::group(['middleware' => ['guest']], function(){
         Route::get('/register', 'RegisterController@registerView')->name('registerView');
         //▼register.blade.phpからpostで入力情報をregisterPostメソッドへ送られる。
         Route::post('/register/post', 'RegisterController@registerPost')->name('registerPost');
-        Route::get('/login', 'LoginController@loginView')->name('loginView');//変更
+        Route::get('/login', 'LoginController@loginView')->name('loginView');
         Route::post('/login/post', 'LoginController@loginPost')->name('loginPost');
     });
 });
