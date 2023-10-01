@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Session\TokenMismatchException;//renderメソッド内のIF文で使用
+// use Illuminate\Session\TokenMismatchException;//renderメソッド内のIF文で使用
 
 class Handler extends ExceptionHandler
 {
@@ -51,9 +51,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-           if ($exception instanceof TokenMismatchException) {
-              return redirect('login');
-        }
+        //    if ($exception instanceof TokenMismatchException) {
+        //       return redirect()->name('login');
+        //    }
 
         return parent::render($request, $exception);
     }

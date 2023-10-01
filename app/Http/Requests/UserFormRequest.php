@@ -24,15 +24,15 @@ class UserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'over_name' => 'required|string|min:2|max:10',
-            'under_name' => 'required|string|min:2|max:10',
-            'over_name_kana' => 'required|string|min:2|max:30',
-            'under_name_kana' => 'required|string|min:2|max:30',
-            'mail_address' => 'required|string|email|min:5|max:100|unique:users',
-            'password' => 'required|string|min:8|max:30|alpha_num|confirmed',
-            'sex' => 'required',
-            'birth_day' => 'required|date',
-            'role' => 'required',
+            'over_name' => 'required|string|max:10',
+            'under_name' => 'required|string|max:10',
+            'over_name_kana' => 'required|string|max:30',
+            'under_name_kana' => 'required|string|max:30',
+            'mail_address' => 'required|mail|unique:users,mail|max:100',
+            // 'sex' => 'required',
+            // 'birth_day' => 'required|date',
+            // 'role' => 'required',
+            'password' => 'required|min:8|max:30|alpha_num|confirmed',
         ];
     }
 

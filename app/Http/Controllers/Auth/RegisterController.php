@@ -52,6 +52,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+    //=====================================
+
     public function registerView()
     {
         //Subjectsモデル(Subjectsデーブル)の情報をすべて抽出する。
@@ -64,8 +67,9 @@ class RegisterController extends Controller
 
     public function registerPost(UserFormRequest $request)
     {
+        dd($request);
         if($request->isMethod('post')){
-            $validator = $request->rules();//rulesメソッドはUserFormRequest.phpから参照
+            $validator = $request -> rules();//rulesメソッドはUserFormRequest.phpから参照
             //dd($validator);
             if($validator->fails()){//もしvalidatorメソッドが失敗したら
             return redirect('/register')//registerへリダイレクト
@@ -109,4 +113,6 @@ class RegisterController extends Controller
             return redirect()->route('loginView');
         }
     }
+
+    //=====================================
 }

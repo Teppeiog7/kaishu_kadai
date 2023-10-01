@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         //作成したSubjectsTableSeederクラスをcallメソッドに渡す。
         $this->call(SubjectsTableSeeder::class);
+        //作成したSubCategoriesTableSeederクラスをcallメソッドに渡す。
+        $this->call(SubCategoriesTableSeeder::class);
     }
 }
