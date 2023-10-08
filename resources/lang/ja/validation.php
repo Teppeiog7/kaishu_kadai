@@ -153,9 +153,9 @@ return [
         'under_name_kana' => '名前のフリガナ',
         'mail_address' => 'メール',
         'password' => 'パスワード',
-        // 'sex' => '性別',
-        // 'role' => '科目',
-        // 'birth_day' => '生年月日',
+        'sex' => '性別',
+        'role' => '科目',
+        'birth_day' => '生年月日',
     ],
 
 ];

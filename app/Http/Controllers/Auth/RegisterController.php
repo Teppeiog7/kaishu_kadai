@@ -67,20 +67,16 @@ class RegisterController extends Controller
 
     public function registerPost(UserFormRequest $request)
     {
-        //dd($request);
-        if($request->isMethod('post')){
-            $validator = $request -> rules();;//rulesメソッドはUserFormRequest.phpから参照
-            //dd($validator);
-            if($validator->fails()){//もしvalidatorメソッドが失敗したら
-            return redirect('/register')//registerへリダイレクト
-            ->withErrors($validator)
-            ->withInput();
-            }
-        }
+        dd($request);
+            // if($request->fails()){//もしvalidatorメソッドが失敗したら
+            // return redirect('/register');//registerへリダイレクト
+            // // ->withErrors($validator)
+            // // ->withInput();
+            // }
 
         //▼変数確認
         //dd($request);
-        DB::beginTransaction();
+        DB::beginTransaction();//Transactionメソッドとは。複数の処理を一個にまとめもの
         try{
             $old_year = $request->old_year;
             $old_month = $request->old_month;

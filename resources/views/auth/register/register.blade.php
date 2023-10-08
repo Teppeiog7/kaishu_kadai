@@ -68,9 +68,9 @@
           </div>
         </div>
         <div class="mt-3">
-          <!-- @error('sex')
-          <p style="color:red; font-weight:bold;">{{ $message }}</p>
-          @enderror -->
+          @error('sex')
+          <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+          @enderror
           <input type="radio" name="sex" class="sex" value="1">
           <label style="font-size:13px">男性</label>
           <input type="radio" name="sex" class="sex" value="2">
@@ -79,9 +79,9 @@
           <label style="font-size:13px">その他</label>
         </div>
         <div class="mt-3">
-          <!-- @error('birth_day')
-          <p style="color:red; font-weight:bold;">{{ $message }}</p>
-          @enderror -->
+          @error('birth_day')
+          <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+          @enderror
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
           <select class="old_year" name="old_year">
             <option value="none">-----</option>
@@ -179,9 +179,9 @@
           <label style="font-size:13px">月</label>
         </div>
         <div class="mt-3">
-          <!-- @error('role')
-          <p style="color:red; font-weight:bold;">{{ $message }}</p>
-          @enderror -->
+          @error('role')
+          <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+          @enderror
           <label class="d-block m-0" style="font-size:13px">役職</label>
           <input type="radio" name="role" class="admin_role role" value="1">
           <label style="font-size:13px">教師(国語)</label>
