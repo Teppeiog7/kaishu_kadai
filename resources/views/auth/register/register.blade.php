@@ -83,7 +83,7 @@
           <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
           @enderror
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
-          <select class="old_year" name="old_year">
+          <select class="old_year" name="datetime[old_year]">
             <option value="none">-----</option>
             <option value="1985">1985</option>
             <option value="1986">1986</option>
@@ -111,22 +111,22 @@
             <option value="2008">2008</option>
             <option value="2009">2009</option>
             <option value="2010">2010</option>
-            <option value="2010">2011</option>
-            <option value="2010">2012</option>
-            <option value="2010">2013</option>
-            <option value="2010">2014</option>
-            <option value="2010">2015</option>
-            <option value="2010">2016</option>
-            <option value="2010">2017</option>
-            <option value="2010">2018</option>
-            <option value="2010">2019</option>
-            <option value="2010">2020</option>
-            <option value="2010">2021</option>
-            <option value="2010">2022</option>
-            <option value="2010">2023</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
           </select>
           <label style="font-size:13px">年</label>
-          <select class="old_month" name="old_month">
+          <select class="old_month" name="datetime[old_month]">
             <option value="none">-----</option>
             <option value="01">1</option>
             <option value="02">2</option>
@@ -142,7 +142,7 @@
             <option value="12">12</option>
           </select>
           <label style="font-size:13px">月</label>
-          <select class="old_day" name="old_day">
+          <select class="old_day" name="datetime[old_day]">
             <option value="none">-----</option>
             <option value="01">1</option>
             <option value="02">2</option>

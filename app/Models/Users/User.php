@@ -29,9 +29,9 @@ class User extends Authenticatable
         'under_name_kana',
         'mail_address',
         'password',
-        // 'sex',
-        // 'birth_day',
-        // 'role',
+        'sex',
+        'birth_day',
+        'role',
     ];
 
     protected $dates = ['deleted_at'];

@@ -67,23 +67,21 @@ class RegisterController extends Controller
 
     public function registerPost(UserFormRequest $request)
     {
-        dd($request);
-            // if($request->fails()){//もしvalidatorメソッドが失敗したら
-            // return redirect('/register');//registerへリダイレクト
-            // // ->withErrors($validator)
-            // // ->withInput();
-            // }
-
-        //▼変数確認
         //dd($request);
+        //UserFormRequestでバリデーション処理後の情報を配列として用意する。
+        $validated = $request->validated();
+        //dd($validated);
+
         DB::beginTransaction();//Transactionメソッドとは。複数の処理を一個にまとめもの
         try{
-            $old_year = $request->old_year;
-            $old_month = $request->old_month;
-            $old_day = $request->old_day;
-            $data = $old_year . '-' . $old_month . '-' . $old_day;
-            $birth_day = date('Y-m-d', strtotime($data));
+            // $old_year = $request->old_year;
+            // $old_month = $request->old_month;
+            // $old_day = $request->old_day;
+            $birth_day =$validated['birth_day'];//$validatedのキー名:birth_dayにある値を抽出する。
+            // $birth_day = date('Y-m-d', strtotime($data));
             $subjects = $request->subject;
+
+            //dd($birth_day);
 
             $user_get = User::create([
                 'over_name' => $request->over_name,
@@ -96,10 +94,8 @@ class RegisterController extends Controller
                 'role' => $request->role,
                 'password' => bcrypt($request->password)
             ]);
-            //▼変数確認
             //ddd($user_get);
             $user = User::findOrFail($user_get->id);
-            //▼変数確認
             //ddd($user);
             $user->subjects()->attach($subjects);
             DB::commit();
