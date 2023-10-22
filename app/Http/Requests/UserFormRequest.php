@@ -29,6 +29,7 @@ class UserFormRequest extends FormRequest
         //dd($datetime_validation);
 
         // rules()に渡す値を追加する。
+        //merge()とは、Requestデータを追加・上書きすること。
         $this->merge([
             'birth_day' => $datetime_validation,
         ]);
