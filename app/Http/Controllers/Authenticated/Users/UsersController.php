@@ -20,10 +20,25 @@ class UsersController extends Controller
         $updown = $request->updown;
         $gender = $request->sex;
         $role = $request->role;
-        $subjects = null;// ここで検索時の科目を受け取る
+        //▼追加
+         if(is_array($request->input('subject'))){
+        //$subject_array = $request->input('subject');
+        //dd($subject_array);
+        //$subjects = null;
+        $subjects = User::with('subjects')// ここで検索時の科目を受け取る
+        ->whereHas('subjects',function ($q) use ($request) {
+             foreach($request->input('subject') as $subject){
+             //dd($subject);
+             $q->orWhere('subject', $subject);
+         }})->get();
+        //dd($subjects);
+         }else{
+            $subjects = null;
+         }
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
         $subjects = Subjects::all();
+        //dd($subjects);
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
 

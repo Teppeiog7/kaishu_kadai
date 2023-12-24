@@ -15,8 +15,13 @@ class Subjects extends Model
         'subject'
     ];
 
+    //▼追加
     public function users(){
-        //SubjectsモデルはUserモデル(Userテーブル)の情報を属している
-        return $this->belongsToMany('App\Models\Users\User');// リレーションの定義
+        // リレーションの定義(多対多)
+        //第一引数：相手のモデル
+        //第二引数：中間テーブルを記載
+        //第三引数：自分の外部キー
+        //第四引数：相手の外部キー
+        return $this->belongsToMany('App\Models\Users\User','subject_users','subject_id','user_id');// リレーションの定義
     }
 }

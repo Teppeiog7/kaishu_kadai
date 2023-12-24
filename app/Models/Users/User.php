@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Categories\MainCategory;//追加
+
 
 use App\Models\Posts\Like;
 use Auth;
@@ -32,6 +34,7 @@ class User extends Authenticatable
         'sex',
         'birth_day',
         'role',
+
     ];
 
     protected $dates = ['deleted_at'];
@@ -57,6 +60,10 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Models\Posts\Post');
     }
+    // //追加
+    // public function likes() {
+    //     return $this->hasMany('App\Models\Posts\Like');
+    // }
 
     public function calendars(){
         return $this->belongsToMany('App\Models\Calendars\Calendar', 'calendar_users', 'user_id', 'calendar_id')->withPivot('user_id', 'id');
@@ -67,8 +74,12 @@ class User extends Authenticatable
     }
 
     public function subjects(){
-        //Userテーブルはsubjectsテーブル情報を属している
-        return $this->belongsToMany('App\Models\Users\Subjects');// リレーションの定義
+        // リレーションの定義(多対多)
+        //第一引数：相手のモデル
+        //第二引数：中間テーブルを記載
+        //第三引数：自分の外部キー
+        //第四引数：相手の外部キー
+        return $this->belongsToMany('App\Models\Users\Subjects','subject_users','user_id','subject_id');// リレーションの定義
     }
 
     // いいねしているかどうか
@@ -79,4 +90,9 @@ class User extends Authenticatable
     public function likePostId(){
         return Like::where('like_user_id', Auth::id());
     }
+
+    //追加
+      public function mainCategories() {
+          return $this->hasMany('App\Models\Categories\MainCategory');
+      }
 }

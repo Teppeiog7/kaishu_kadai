@@ -9,15 +9,35 @@
           </div>
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <!-- ▼追加 -->
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
           </div>
         </div>
-
+        <!-- ▼追加 -->
+        @error('post_title')
+        <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+        @enderror
+        @error('post_body')
+        <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+        @enderror
         <div class="contributor d-flex">
+
+          <!-- @if($post->user->role == 1)
+          <span>数学</span>
+          @elseif($post->user->role == 2)
+          <span>英語</span>
+          @elseif($post->user->role == 3)
+          <span>国語</span>
+          @else
+          <span>生徒</span>
+          @endif -->
           <p>
-            <span>{{ $post->user->over_name }}</span>
-            <span>{{ $post->user->under_name }}</span>
-            さん
+          @foreach($post->subCategories as $post_subCategory)
+            <p><span>{{ $post_subCategory->sub_category }}</span></p><br>
+          @endforeach
+          <span>{{ $post->user->over_name }}</span>
+          <span>{{ $post->user->under_name }}</span>
+          さん
           </p>
           <span class="ml-5">{{ $post->created_at }}</span>
         </div>
@@ -43,6 +63,10 @@
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
+        <!-- ▼追加 -->
+        @error('comment')
+        <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+        @enderror
         <p class="m-0">コメントする</p>
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">

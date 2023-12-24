@@ -79,9 +79,11 @@ class RegisterController extends Controller
             // $old_day = $request->old_day;
             $birth_day =$validated['birth_day'];//$validatedのキー名:birth_dayにある値を抽出する。
             // $birth_day = date('Y-m-d', strtotime($data));
-            $subjects = $request->subject;
-
             //dd($birth_day);
+
+            $subjects = $request->subject;
+            //dd($subjects);
+
 
             $user_get = User::create([
                 'over_name' => $request->over_name,
@@ -92,6 +94,7 @@ class RegisterController extends Controller
                 'sex' => $request->sex,
                 'birth_day' => $birth_day,
                 'role' => $request->role,
+                // 'subject' => $request->subject,
                 'password' => bcrypt($request->password)
             ]);
             //ddd($user_get);

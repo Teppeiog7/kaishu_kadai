@@ -8,7 +8,7 @@ $(function () {
     e.preventDefault();
     $(this).addClass('un_like_btn');
     $(this).removeClass('like_btn');
-    var post_id = $(this).attr('post_id');
+    var post_id = $(this).attr('post_id');//'post_id'の値を抽出している。
     var count = $('.like_counts' + post_id).text();
     var countInt = Number(count);
     $.ajax({
@@ -48,7 +48,7 @@ $(function () {
     });
   });
 
-  $('.edit-modal-open').on('click',function(){
+  $('.edit-modal-open').on('click', function () {
     $('.js-modal').fadeIn();
     var post_title = $(this).attr('post_title');
     var post_body = $(this).attr('post_body');

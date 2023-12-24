@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests\BulletinBoard;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Illuminate\Validation\Rule;//追加
-
-class PostFormRequest extends FormRequest
+class PostEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +21,14 @@ class PostFormRequest extends FormRequest
      *
      * @return array
      */
-    // ▼追加
     public function rules()
     {
         return [
-            'post_category_id' => 'required|exists:sub_categories,id',
             'post_title' => 'required|string|max:100',
             'post_body' => 'required|string|max:5000',
         ];
     }
-    // ▼追加
+
     public function messages(){
         return [
             'post_title.max' => '※タイトルは100文字以内で記入してください。',

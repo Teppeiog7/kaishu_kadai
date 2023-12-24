@@ -156,6 +156,11 @@ return [
         'sex' => '性別',
         'role' => '科目',
         'birth_day' => '生年月日',
+        'post_title' => 'タイトル',
+        'post' => '編集内容',
+        'comment' => 'コメント',
+        'main_category_name' => 'メインカテゴリー',
+        'sub_category_name' => 'サブカテゴリー',
     ],
 
 ];

@@ -54,6 +54,7 @@ class UserFormRequest extends FormRequest
             'sex' => 'required|in:1,2,3',
             'birth_day' => 'required|after:2000/1/1|before_or_equal:today|date',
             'role' => 'required|in:1,2,3,4',
+            // 'subject' => 'required|in:1,2,3',
             'password' => 'required|min:8|max:30|alpha_num|confirmed',
         ];
     }
@@ -62,7 +63,7 @@ class UserFormRequest extends FormRequest
         return [
             'birth_day.date'  => "存在しない日付です。",
             'birth_day.after'  => "2000年1月1日以降の日付にしてください。",
-            'birth_day.before_or_equal' => "今日よりも前の日付にしてください。"
+            'birth_day.before_or_equal' => "今日よりも前の日付にしてください。",
         ];
     }
 }
