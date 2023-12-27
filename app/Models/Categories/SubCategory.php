@@ -21,6 +21,7 @@ class SubCategory extends Model
         return $this->belongsTo('App\Models\Categories\mainCategory');
     }
 
+    //▼追加
     public function posts(){
         // リレーションの定義(多対多)
         //第一引数：相手のモデル

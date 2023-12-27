@@ -21,6 +21,15 @@ class SearchResultFactories{
         $searchResults = new SelectIdDetails();
       }
       return $searchResults->resultUsers($keyword, $category, $updown, $gender, $role, $subjects);
+    // //▼追加
+    // }else if($category == 'id'){
+    //   if(is_array($request->input('subject'))){
+    //     $searchResults = new SelectNames();
+    //   }else{
+    //     $searchResults = new SelectNameDetails();
+    //   }
+    //   return $searchResults->resultUsers($keyword, $category, $updown, $gender, $role, $subjects);
+    // //ここまで
     }else{
       $allUsers = new AllUsers();
     return $allUsers->resultUsers($keyword, $category, $updown, $gender, $role, $subjects);

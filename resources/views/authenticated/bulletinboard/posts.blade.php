@@ -44,11 +44,13 @@
         <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
         <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
         @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>●{{ $category->main_category }}<span></li>
+        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
         @foreach($sub_categories as $sub_category)
         <!-- ▼追加 -->
         @if($sub_category->main_category_id === $category->id)
-        <a href="{{ route('post.show', ['sub_category_word' => $sub_category->sub_category]) }}" name="sub_category_word" form="postSearchRequest">{{ $sub_category->sub_category }}</a>
+        <div class="category_num{{ $category->id }}" style="display: none;">
+          <a href="{{ route('post.show', ['sub_category_word' => $sub_category->sub_category]) }}" name="sub_category_word" form="postSearchRequest">{{ $sub_category->sub_category }}</a>
+        </div>
         <!-- <li class="main_categories" category_id="{{ $category->id }}" name="category_word">{{ $sub_category->sub_category }}</li> -->
         @endif
         @endforeach
@@ -59,5 +61,20 @@
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
 </div>
+<!-- <script>
+//初期表示は非表示
+document.getElementById("sub").style.display = "none";
 
+function clickBtn1() {
+  const sub = document.getElementById("sub");
+
+  if (sub.style.display == "block") {
+    // noneで非表示
+    sub.style.display = "none";
+  } else {
+    // blockで表示
+    sub.style.display = "block";
+  }
+}
+</script> -->
 @endsection
