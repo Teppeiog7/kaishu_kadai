@@ -86,6 +86,7 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request){
+        //dd($request);
         $post_get = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
@@ -97,7 +98,6 @@ class PostsController extends Controller
         $sub_category = $request->post_category_id;
         //dd($sub_category);
         $post = Post::findOrFail($post_get->id);
-        //dd($post);
         //sub_categoryのIDを中間テーブルへ追加。
         $post->subCategories()->attach($sub_category);
 
@@ -135,9 +135,11 @@ class PostsController extends Controller
 
     public function mainCategoryCreate(MainCategoryFormRequest $request){
         //dd($request);
+        $ans = $request->input('main_category_name');
+        //dd($ans);
         MainCategory::create(['main_category' => $request->main_category_name]);
-        //$main_categories = MainCategory::get();
-        //dd($main_category);
+        $main_categories = MainCategory::get();
+        //dd($main_categories);
         return redirect()->route('post.input');
     }
 
@@ -145,8 +147,10 @@ class PostsController extends Controller
 
      public function subCategoryCreate(SubCategoryFormRequest $request){
         //dd($request);
+         $value = $request->input('main_category');
+          //dd($value);
         SubCategory::create([
-            'main_category_id' =>Auth::id(),
+            'main_category_id' =>$request->input('main_category'),
             'sub_category' => $request->sub_category_name,
         ]);
         return redirect()->route('post.input');

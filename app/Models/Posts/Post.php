@@ -61,8 +61,8 @@ class Post extends Model
         return Post::with('postComments')->find($post_id)->postComments();
     }
 
-    //追加
-      public function mainCategories() {
-          return $this->hasMany('App\Models\Categories\MainCategory');
-      }
+     //追加
+       public function mainCategories() {
+           return $this->hasMany('App\Models\Categories\MainCategory');
+       }
 }

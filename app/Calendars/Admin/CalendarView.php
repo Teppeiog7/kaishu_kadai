@@ -32,20 +32,27 @@ class CalendarView{
     $html[] = '<tbody>';
 
     $weeks = $this->getWeeks();
+    //dd($weeks);
 
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
+      //dd($html);
       $days = $week->getDays();
+      //dd($days);
       foreach($days as $day){
+        //dd($day);
         $startDay = $this->carbon->format("Y-m-01");
+        //dd($startDay);
         $toDay = $this->carbon->format("Y-m-d");
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+        //dd($toDay);
+         if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
           $html[] = '<td class="past-day border">';
         }else{
           $html[] = '<td class="border '.$day->getClassName().'">';
         }
         $html[] = $day->render();
         $html[] = $day->dayPartCounts($day->everyDay());
+        //dd($html);
         $html[] = '</td>';
       }
       $html[] = '</tr>';

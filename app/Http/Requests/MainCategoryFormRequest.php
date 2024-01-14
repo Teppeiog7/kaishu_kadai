@@ -24,8 +24,8 @@ class MainCategoryFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'main_category_name' => 'required|max:5|string|unique:main_categories,main_category',
-            'main_category_id' => 'required|exists:main_categories,id',
+            'main_category_name' => 'required|max:100|string|unique:main_categories,main_category',
+            // 'main_category_id' => 'required|exists:main_categories,id',
         ];
     }
 

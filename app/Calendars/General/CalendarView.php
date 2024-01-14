@@ -32,22 +32,30 @@ class CalendarView{
     $html[] = '</thead>';
     $html[] = '<tbody>';
     $weeks = $this->getWeeks();
+    //dd($weeks);
+
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
 
       $days = $week->getDays();
+      //dd($days);
       foreach($days as $day){
         $startDay = $this->carbon->copy()->format("Y-m-01");
         $toDay = $this->carbon->copy()->format("Y-m-d");
+        //dd($toDay);
 
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="calendar-td">';
+        //▼$startDay:01/01
+        //▼$toDay:本日の日付
+        //▼$day:月の日付すべて
+        if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
+          //▼追加:cssの「past-day border」を追加
+          $html[] = '<td class="calendar-td past-day border">';
         }else{
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
         $html[] = $day->render();
 
-        if(in_array($day->everyDay(), $day->authReserveDay())){
+        if(in_array($day->everyDay(), $day->authReserveDay())){ //予約していたら
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if($reservePart == 1){
             $reservePart = "リモ1部";
@@ -56,15 +64,39 @@ class CalendarView{
           }else if($reservePart == 3){
             $reservePart = "リモ3部";
           }
-          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+          if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+            $html[] = '<p>'.$reservePart.'参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-          }else{
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+          }else{//未来だったら
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'.$reservePart.'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            //▼追加:モーダル機能
+            $html[] = '<div class="modal js-modal">';
+            $html[] = '<div class="modal__bg js-modal-close"></div>';
+            $html[] = '<div class="modal__content">';
+            $html[] = '<p form="deleteParts">'.'予約日：'.$day->authReserveDate($day->everyDay())->first()->setting_reserve.'</p>';
+            // $html[] = '<input type="" name="reserve" value="'.$day->authReserveDate($day->everyDay())->first()->setting_reserve.'" form="deleteParts">';
+            $html[] = '<br>';
+            $html[] = '<p form="deleteParts">'.'時間：'.$reservePart.'</p>';
+            // $html[] = '<input type="" name="time" value="'.$reservePart.'" form="deleteParts">';
+            $html[] = '<a class="js-modal-close" href="">閉じる</a>';
+            $html[] = '<button type="submit" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" form="deleteParts">キャンセル</button>';
+            $html[] = '<input type="hidden" name="cancel" form="deleteParts" value="'.$day->authReserveDate($day->everyDay())->first()->id.'">';
+            $html[] = '</div>';
+            $html[] = '</div>';
+
           }
         }else{
-          $html[] = $day->selectPart($day->everyDay());
+          //▼追加
+          //予約していないエリア
+          // $html[] = $day->selectPart($day->everyDay());
+           if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
+           $html[] = '<p>受付終了</p>';
+           $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+           }else{//未来だったら
+           $html[] = $day->selectPart($day->everyDay());
+           }
         }
         $html[] = $day->getDate();
         $html[] = '</td>';

@@ -34,7 +34,6 @@ class User extends Authenticatable
         'sex',
         'birth_day',
         'role',
-
     ];
 
     protected $dates = ['deleted_at'];
@@ -70,7 +69,12 @@ class User extends Authenticatable
     }
 
     public function reserveSettings(){
-        return $this->belongsToMany('App\Models\Calendars\ReserveSettings', 'reserve_setting_users', 'user_id', 'reserve_setting_id')->withPivot('id');
+        // リレーションの定義(多対多)
+        //第一引数：相手のモデル
+        //第二引数：中間テーブルを記載
+        //第三引数：自分の外部キー
+        //第四引数：相手の外部キー
+        return $this->belongsToMany('App\Models\Calendars\ReserveSettings', 'reserve_setting_users', 'user_id', 'reserve_setting_id')->withPivot('user_id', 'id');//追加：'user_id'
     }
 
     public function subjects(){

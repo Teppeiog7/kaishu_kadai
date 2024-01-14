@@ -41,29 +41,24 @@
   @can('admin')
   <div class="w-25 ml-auto mr-auto">
     <div class="category_area mt-5 p-5">
-      <div class="">
-        @error('main_category_name')
-        <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
-        @enderror
-        <!-- サブカテゴリー追加 -->
-        <p class="m-0">メインカテゴリー</p>
-        <form method="POST" action="/create/main_category">
-          @csrf
-          <input type="text" class="w-100" name="main_category_name"><!-- form="mainCategoryRequestを削除" -->
-          <input type="submit" value="追加" class="w-100 btn btn-primary p-0"><!-- form="mainCategoryRequestを削除" -->
-        </form>
-      </div>
+      @error('main_category_name')
+      <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
+      @enderror
+      <!-- メインカテゴリー追加 -->
+      <p class="m-0">メインカテゴリー</p>
+      <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
+      <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
+      <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
       <!-- サブカテゴリー追加 -->
       @error('sub_category_name')
       <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
       @enderror
       <p class="m-0">サブカテゴリー</p>
-      <!-- <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form> -->
       <form method="POST" action="/create/sub_category">
         @csrf
-        <select>
-          @foreach($sub_categories as $sub_category)
-          <option value="{{ $sub_category->id }}" label="{{ $sub_category->sub_category }}"></option>
+        <select name="main_category">
+          @foreach($main_categories as $main_category)
+          <option value="{{ $main_category->id }}" label="{{ $main_category->main_category }}"></option>
           @endforeach
         </select>
         <input type="text" name="sub_category_name">

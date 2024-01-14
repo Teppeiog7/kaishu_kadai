@@ -13,7 +13,7 @@ class CalendarWeekDay{
   }
 
   function getClassName(){
-    return "day-" . strtolower($this->carbon->format("D"));
+    return "day-" . strtolower($this->carbon->format("D")); //strtolowerメソッド：文字列を小文字にする
   }
 
   function pastClassName(){
@@ -32,6 +32,7 @@ class CalendarWeekDay{
      $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+
      if($one_part_frame){
        $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first()->limit_users;
      }else{
