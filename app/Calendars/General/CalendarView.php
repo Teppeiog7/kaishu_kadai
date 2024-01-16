@@ -66,6 +66,7 @@ class CalendarView{
           }
           if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+            //▼追加
             $html[] = '<p>'.$reservePart.'参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{//未来だったら
@@ -76,10 +77,10 @@ class CalendarView{
             $html[] = '<div class="modal__bg js-modal-close"></div>';
             $html[] = '<div class="modal__content">';
             $html[] = '<p form="deleteParts">'.'予約日：'.$day->authReserveDate($day->everyDay())->first()->setting_reserve.'</p>';
-            // $html[] = '<input type="" name="reserve" value="'.$day->authReserveDate($day->everyDay())->first()->setting_reserve.'" form="deleteParts">';
             $html[] = '<br>';
             $html[] = '<p form="deleteParts">'.'時間：'.$reservePart.'</p>';
-            // $html[] = '<input type="" name="time" value="'.$reservePart.'" form="deleteParts">';
+            $html[] = '<br>';
+            $html[] = '<p>上記の予約をキャンセルしてもよろしいですか？</p>';
             $html[] = '<a class="js-modal-close" href="">閉じる</a>';
             $html[] = '<button type="submit" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" form="deleteParts">キャンセル</button>';
             $html[] = '<input type="hidden" name="cancel" form="deleteParts" value="'.$day->authReserveDate($day->everyDay())->first()->id.'">';
@@ -90,7 +91,6 @@ class CalendarView{
         }else{
           //▼追加
           //予約していないエリア
-          // $html[] = $day->selectPart($day->everyDay());
            if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
            $html[] = '<p>受付終了</p>';
            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';

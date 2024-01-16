@@ -8,7 +8,6 @@
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
-        <!-- <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option> -->
         <!-- サブカテゴリー表示 -->
         <!-- ▼追加 -->
         @foreach($sub_categories as $sub_category)
@@ -44,12 +43,12 @@
       @error('main_category_name')
       <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
       @enderror
-      <!-- メインカテゴリー追加 -->
+      <!-- ▼メインカテゴリー追加 -->
       <p class="m-0">メインカテゴリー</p>
       <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
       <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
       <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
-      <!-- サブカテゴリー追加 -->
+      <!-- ▼サブカテゴリー追加 -->
       @error('sub_category_name')
       <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
       @enderror

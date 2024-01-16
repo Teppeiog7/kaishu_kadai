@@ -135,7 +135,7 @@ class PostsController extends Controller
 
     public function mainCategoryCreate(MainCategoryFormRequest $request){
         //dd($request);
-        $ans = $request->input('main_category_name');
+        //$ans = $request->input('main_category_name');
         //dd($ans);
         MainCategory::create(['main_category' => $request->main_category_name]);
         $main_categories = MainCategory::get();
@@ -147,8 +147,8 @@ class PostsController extends Controller
 
      public function subCategoryCreate(SubCategoryFormRequest $request){
         //dd($request);
-         $value = $request->input('main_category');
-          //dd($value);
+        //$value = $request->input('main_category');
+        //dd($value);
         SubCategory::create([
             'main_category_id' =>$request->input('main_category'),
             'sub_category' => $request->sub_category_name,

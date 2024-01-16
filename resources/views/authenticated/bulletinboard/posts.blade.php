@@ -61,20 +61,4 @@
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
 </div>
-<!-- <script>
-//初期表示は非表示
-document.getElementById("sub").style.display = "none";
-
-function clickBtn1() {
-  const sub = document.getElementById("sub");
-
-  if (sub.style.display == "block") {
-    // noneで非表示
-    sub.style.display = "none";
-  } else {
-    // blockで表示
-    sub.style.display = "block";
-  }
-}
-</script> -->
 @endsection

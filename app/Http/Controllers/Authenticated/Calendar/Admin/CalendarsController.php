@@ -23,6 +23,7 @@ class CalendarsController extends Controller
     public function reserveDetail($date, $part){
         //dd($date, $part);
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
+        //▼追加
         $remote = "リモート";
         //dd($date, $part, $reservePersons);
         return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part','remote'));
