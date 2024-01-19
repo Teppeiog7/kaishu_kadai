@@ -35,9 +35,14 @@ class PostsController extends Controller
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
-            $posts = Post::with('user', 'postComments')
+            //$keyword = $request->keyword;
+            //dd($keyword);
+            $posts = Post::with('user', 'postComments','subCategories')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
-            ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
+            ->orWhere('post', 'like', '%'.$request->keyword.'%')
+            //▼追加
+            ->orWhereHas('subCategories',function ($q) use ($request) {$q->where('sub_category', '=', $request->keyword);})->get();
+            // ->orWhere('sub_category' ,'=', '%'.$request->keyword.'%' )->get();
             //dd($posts);
         }else if($request->sub_category_word){
             //$sub_category_word = $request->sub_category_word;

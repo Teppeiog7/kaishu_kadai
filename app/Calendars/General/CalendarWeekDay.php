@@ -80,10 +80,12 @@ class CalendarWeekDay{
    }
 
    function authReserveDay(){
+    //▼予約した日付すべて
      return Auth::user()->reserveSettings->pluck('setting_reserve')->toArray();
    }
 
    function authReserveDate($reserveDate){
+    //▼月の一番最初に予約したsetting_reserve情報
      return Auth::user()->reserveSettings->where('setting_reserve', $reserveDate);
    }
 
