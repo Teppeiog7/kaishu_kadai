@@ -71,8 +71,8 @@ class CalendarView{
             $html[] = '<p>'.$reservePart.'参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{//未来だったら ▼追加 属性:part
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="reserve_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part='.$reservePart.'>'.$reservePart.'</button>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="reserve_date" style="font-size:12px" value01="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part='.$reservePart.' value02="'.$day->authReserveDate($day->everyDay())->first()->id.'">'.$reservePart.'</button>';
+            $html[] = '<input type="hidden" name="getPart[]" value02="'.$day->authReserveDate($day->everyDay())->first()->id.'" form="reserveParts">';
             //▼追加:モーダル機能、追加:80行目、82行目
             $html[] = '<div class="modal js-modal">';
             $html[] = '<div class="modal__bg js-modal-close"></div>';
@@ -81,13 +81,14 @@ class CalendarView{
             $html[] = '<br>';
             $html[] = '<div form="deleteParts" class="modal_part"></div>';
             $html[] = '<br>';
+            // $html[] = '<div form="deleteParts" class="modal_id_date"></div>';
             $html[] = '<p>上記の予約をキャンセルしてもよろしいですか？</p>';
             $html[] = '<a class="js-modal-close" href="">閉じる</a>';
-            $html[] = '<button type="submit" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" form="deleteParts">キャンセル</button>';
-            $html[] = '<input type="hidden" name="cancel" form="deleteParts" value="'.$day->authReserveDate($day->everyDay())->first()->id.'">';
+            $html[] = '<button type="submit" name="delete_date" style="font-size:12px" value="" form="deleteParts">キャンセル</button>';
+            //▼追加 属性:class
+            $html[] = '<input type="hidden" name="cancel" form="deleteParts" class="modal_id_date">';
             $html[] = '</div>';
             $html[] = '</div>';
-
           }
         }else{
           //▼追加
