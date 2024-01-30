@@ -1,7 +1,17 @@
 $(function () {
+
   $('.main_categories').click(function () {
+    $(this).toggleClass('active');
     var category_id = $(this).attr('category_id');
     $('.category_num' + category_id).slideToggle();
+    if ($(this).hasClass('active')) {
+      $(this).next('.category_num' + category_id).slideDown();
+    } else {
+      //それ以外の場合、タグの内容がクローズする
+      $(this).next('.category_num' + category_id).slideUp();
+    }
+    // var category_id = $(this).attr('category_id');
+    // $('.category_num' + category_id).slideToggle();
   });
 
   $(document).on('click', '.like_btn', function (e) {
@@ -49,7 +59,7 @@ $(function () {
   });
 
   $('.edit-modal-open').on('click', function () {
-    $('.js-modal').fadeIn();
+    $('.js-modal-edit').fadeIn();
     var post_title = $(this).attr('post_title');
     var post_body = $(this).attr('post_body');
     var post_id = $(this).attr('post_id');
@@ -58,8 +68,8 @@ $(function () {
     $('.edit-modal-hidden').val(post_id);
     return false;
   });
-  $('.js-modal-close').on('click', function () {
-    $('.js-modal').fadeOut();
+  $('.js-modal-edit-close').on('click', function () {
+    $('.js-modal-edit').fadeOut();
     return false;
   });
 

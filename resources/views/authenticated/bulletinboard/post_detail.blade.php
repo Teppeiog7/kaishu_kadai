@@ -10,9 +10,9 @@
           <div>
             <!-- ▼追加 -->
             @if(Auth::user()->id === $post->user->id)
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+            <span class="edit-modal-open btn btn-primary d-block" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
             <!-- ▼追加 -->
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="js-modal-edit-close btn btn-danger d-inline-block" onclick="return confirm('削除してよろしいですか？')">削除</a>
             @endif
           </div>
         </div>
@@ -24,28 +24,21 @@
         <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
         @enderror
         <div class="contributor d-flex">
-
-          <!-- @if($post->user->role == 1)
-          <span>数学</span>
-          @elseif($post->user->role == 2)
-          <span>英語</span>
-          @elseif($post->user->role == 3)
-          <span>国語</span>
-          @else
-          <span>生徒</span>
-          @endif -->
-          <p>
-          @foreach($post->subCategories as $post_subCategory)
-            <p><span>{{ $post_subCategory->sub_category }}</span></p><br>
-          @endforeach
-          <span>{{ $post->user->over_name }}</span>
-          <span>{{ $post->user->under_name }}</span>
-          さん
-          </p>
-          <span class="ml-5">{{ $post->created_at }}</span>
+          <ul>
+            <li class="sub_category">
+              @foreach($post->subCategories as $post_subCategory)
+              <span>{{ $post_subCategory->sub_category }}</span><br>
+              @endforeach
+            </li>
+            <li class="mt-3 detsail_post_name">
+              <span>{{ $post->user->over_name }}</span>
+              <span>{{ $post->user->under_name }}</span>さん
+              <span class="ml-5">{{ $post->created_at }}</span>
+            </li>
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
+        </ul>
       </div>
       <div class="p-3">
         <div class="comment_container">
@@ -79,8 +72,8 @@
     </div>
   </div>
 </div>
-<div class="modal js-modal">
-  <div class="modal__bg js-modal-close"></div>
+<div class="modal js-modal-edit">
+  <div class="modal__bg js-modal-edit-close"></div>
   <div class="modal__content">
     <form action="{{ route('post.edit') }}" method="post">
       <div class="w-100">
@@ -91,7 +84,7 @@
           <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
-          <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
+          <a class="js-modal-edit-close btn btn-danger d-inline-block" href="">閉じる</a>
           <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
           <input type="submit" class="btn btn-primary d-block" value="編集">
         </div>

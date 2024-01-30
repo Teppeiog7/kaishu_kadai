@@ -26,8 +26,8 @@ class CalendarView{
     $html[] = '<th>水</th>';
     $html[] = '<th>木</th>';
     $html[] = '<th>金</th>';
-    $html[] = '<th>土</th>';
-    $html[] = '<th>日</th>';
+    $html[] = '<th class="day-sat">土</th>';
+    $html[] = '<th class="day-sun">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -51,7 +51,7 @@ class CalendarView{
           //▼追加:cssの「past-day border」を追加
           $html[] = '<td class="calendar-td past-day border">';
         }else{
-          $html[] = '<td class="calendar-td '.$day->getClassName().'">';
+          $html[] = '<td class="calendar-td'.$day->getClassName().'">';
         }
         $html[] = $day->render();
 
@@ -75,15 +75,15 @@ class CalendarView{
             $html[] = '<input type="hidden" name="getPart[]" value02="'.$day->authReserveDate($day->everyDay())->first()->id.'" form="reserveParts">';
             //▼追加:モーダル機能、追加:80行目、82行目
             $html[] = '<div class="modal js-modal">';
-            $html[] = '<div class="modal__bg js-modal-close"></div>';
-            $html[] = '<div class="modal__content">';
+            $html[] = '<div class="modal__bg js-reserve-close"></div>';
+            $html[] = '<div class="modal__content text-black ">';
             $html[] = '<div form="deleteParts" class="modal_reserve_date"></div>';
             $html[] = '<br>';
             $html[] = '<div form="deleteParts" class="modal_part"></div>';
             $html[] = '<br>';
             // $html[] = '<div form="deleteParts" class="modal_id_date"></div>';
             $html[] = '<p>上記の予約をキャンセルしてもよろしいですか？</p>';
-            $html[] = '<a class="js-modal-close" href="">閉じる</a>';
+            $html[] = '<a class="js-reserve-close" href="">閉じる</a>';
             $html[] = '<button type="submit" name="delete_date" style="font-size:12px" value="" form="deleteParts">キャンセル</button>';
             //▼追加 属性:class
             $html[] = '<input type="hidden" name="cancel" form="deleteParts" class="modal_id_date">';
