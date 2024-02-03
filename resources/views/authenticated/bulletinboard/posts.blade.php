@@ -10,7 +10,7 @@
     <!-- ▼追加 -->
     @foreach($post->subCategories as $post_subCategory)
     <!-- class border削除 -->
-    <div class="post_area w-75 m-auto p-3">
+    <div class="post_area w-75 m-auto p-3" style="margin-top:2px;">
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}" class="post_title">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
@@ -20,17 +20,17 @@
           </div>
           <div class="count_content">
             <div class="mr-5">
-              <div class="comment_area border-top"></div>
-              <i class="fa fa-comment"></i>
+              <div class="comment_area"></div>
+              <i class="fa fa-comment" style="color: #999;"></i>
               <span class="">
                 <span>{{$post->postComments->count()}}</span>
               </span>
             </div>
             <div>
               @if(Auth::user()->is_Like($post->id))
-              <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
+              <p class="m-0" style="color: #999;"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
               @else
-              <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
+              <p class="m-0" style="color: #999;"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
               @endif
             </div>
           </div>
@@ -38,15 +38,14 @@
       </div>
     </div>
     @endforeach
+    <span style="display:block; height: 5px;"></span>
     @endforeach
   </div>
   <!-- css:▼border削除 -->
   <div class="other_area w-25">
     <!-- css:▼border、m-4削除 -->
     <div class="search_all">
-      <a href="{{ route('post.input') }}">
-        <div class="research">投稿</div>
-      </a>
+      <a href="{{ route('post.input') }}" class="research">投稿</a>
       <div class="search_container">
         <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
         <input type="submit" value="検索" form="postSearchRequest">
@@ -57,7 +56,7 @@
           <span class="category_btn"></span>
           <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
         </li>
-        <li>カテゴリー検索</li>
+        <li style="margin-top: 20px;">カテゴリー検索</li>
         @foreach($categories as $category)
         <li class="main_categories" category_id="{{ $category->id }}">
           <span>{{ $category->main_category }}<span>

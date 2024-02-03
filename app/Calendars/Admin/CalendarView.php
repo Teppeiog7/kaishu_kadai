@@ -45,8 +45,8 @@ class CalendarView{
         //dd($startDay);
         $toDay = $this->carbon->format("Y-m-d");
         //dd($toDay);
-         if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
-          $html[] = '<td class="past-day border">';
+         if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
+          $html[] = '<td class="past-day border '.$day->getClassName().'">';
         }else{
           $html[] = '<td class="border '.$day->getClassName().'">';
         }

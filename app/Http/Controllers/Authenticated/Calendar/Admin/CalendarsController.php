@@ -11,6 +11,7 @@ use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
 use Auth;
 use DB;
+use Carbon\Carbon;//追加
 
 class CalendarsController extends Controller
 {
@@ -25,8 +26,11 @@ class CalendarsController extends Controller
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
         //▼追加
         $remote = "リモート";
-        //dd($date, $part, $reservePersons);
-        return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part','remote'));
+        //▼追加
+        $carbonDate = Carbon::parse($date);
+        $formattedDate = $carbonDate->isoFormat('YYYY年MM月DD日');
+        //dd($formattedDate, $part, $reservePersons);
+        return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'formattedDate', 'part','remote'));
     }
 
     public function reserveSettings(){

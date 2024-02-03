@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
-  <div class="w-50 m-auto h-75">
+  <!-- class:w-50削除 -->
+  <div class="m-auto h-75" style="width: 80%;">
     <!-- ▼追加 -->
-    <p><span>{{$date}}日</span><span class="ml-3">{{$part}}部</span></p>
+    <h5><span>{{$formattedDate}}</span><span class="ml-3">{{$part}}部</span></h5>
     <!-- class:h-75削除 -->
     <div class="border reserve_list" style="background:#FFF; border-radius:5px; padding:10px;box-shadow: 0 0 3px gray;">
       <table class="" style="width: 100%;">

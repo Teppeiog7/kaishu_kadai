@@ -33,7 +33,7 @@
             <li class="mt-3 detsail_post_name">
               <span>{{ $post->user->over_name }}</span>
               <span>{{ $post->user->under_name }}</span>さん
-              <span class="ml-5">{{ $post->created_at }}</span>
+              <!-- <span class="ml-5">{{ $post->created_at }}</span> -->
             </li>
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>

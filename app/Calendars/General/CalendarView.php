@@ -34,6 +34,7 @@ class CalendarView{
     $weeks = $this->getWeeks();
     //dd($weeks);
 
+
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
 
@@ -49,9 +50,9 @@ class CalendarView{
         //▼$day:月の日付すべて
         if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){
           //▼追加:cssの「past-day border」を追加
-          $html[] = '<td class="calendar-td past-day border">';
+          $html[] = '<td class="calendar-td past-day border '.$day->getClassName().'">';
         }else{
-          $html[] = '<td class="calendar-td'.$day->getClassName().'">';
+          $html[] = '<td class="border '.$day->getClassName().'">';
         }
         $html[] = $day->render();
 
@@ -66,7 +67,7 @@ class CalendarView{
             $reservePart = "リモ3部";
           }
           if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+            $html[] = '<p class="m-auto p-0 w-75 day-sat day-sun" style="font-size:12px"></p>';
             //▼追加
             $html[] = '<p>'.$reservePart.'参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
@@ -76,15 +77,21 @@ class CalendarView{
             //▼追加:モーダル機能、追加:80行目、82行目
             $html[] = '<div class="modal js-modal">';
             $html[] = '<div class="modal__bg js-reserve-close"></div>';
-            $html[] = '<div class="modal__content text-black ">';
+            $html[] = '<div class="modal__content">';
+            $html[] = '<div style="display: block; text-align: left; width: 60%; margin: 0 auto;" >';
+            $html[] = '<div class="text-black" style="">';
             $html[] = '<div form="deleteParts" class="modal_reserve_date"></div>';
             $html[] = '<br>';
             $html[] = '<div form="deleteParts" class="modal_part"></div>';
             $html[] = '<br>';
             // $html[] = '<div form="deleteParts" class="modal_id_date"></div>';
             $html[] = '<p>上記の予約をキャンセルしてもよろしいですか？</p>';
-            $html[] = '<a class="js-reserve-close" href="">閉じる</a>';
-            $html[] = '<button type="submit" name="delete_date" style="font-size:12px" value="" form="deleteParts">キャンセル</button>';
+            $html[] = '</div>';
+            $html[] = '</div>';
+            $html[] = '<div style="display:flex; width: 60%; margin: 0 auto; position: relative;">';
+            $html[] = '<button class="js-reserve-close btn btn-primary d-block" href="">閉じる</button>';
+            $html[] = '<input type="submit" name="delete_date" style="" class="btn_cancel" value="キャンセル" form="deleteParts">';
+            $html[] = '</div>';
             //▼追加 属性:class
             $html[] = '<input type="hidden" name="cancel" form="deleteParts" class="modal_id_date">';
             $html[] = '</div>';

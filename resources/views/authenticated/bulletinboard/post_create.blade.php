@@ -44,15 +44,16 @@
       <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
       @enderror
       <!-- ▼メインカテゴリー追加 -->
-      <p class="m-0">メインカテゴリー</p>
+      <p class="" style="margin-top:20px">メインカテゴリー</p>
       <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
+      <span style="display:block; height: 20px;"></span>
       <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
       <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
       <!-- ▼サブカテゴリー追加 -->
       @error('sub_category_name')
       <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
       @enderror
-      <p class="m-0">サブカテゴリー</p>
+      <p class="" style="margin-top:20px">サブカテゴリー</p>
       <form method="POST" action="/create/sub_category">
         @csrf
         <select name="main_category">
@@ -60,7 +61,9 @@
           <option value="{{ $main_category->id }}" label="{{ $main_category->main_category }}"></option>
           @endforeach
         </select>
+        <span style="display:block; height: 20px;"></span>
         <input type="text" name="sub_category_name">
+        <span style="display:block; height: 20px;"></span>
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0">
       </form>
     </div>

@@ -231,9 +231,14 @@ li {
   padding: 5px;
   text-align: center;
   color: #FFF;
+  cursor: pointer;
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.research a {
+.research:hover {
+  text-decoration: none;
   color: #FFF;
 }
 
@@ -252,6 +257,7 @@ li {
   width: 100%;
   border: 1px solid #999;
   border-radius: 20px;
+  padding: 10px;
 }
 
 .search_container input[type="text"]:focus {
@@ -286,6 +292,7 @@ li {
   padding: 5px;
   text-align: center;
   width: 49.5%;
+  cursor: pointer;
 }
 
 .category_btn:nth-child(2) {
@@ -299,6 +306,7 @@ li {
   padding: 5px;
   text-align: center;
   width: 49.5%;
+  cursor: pointer;
 }
 
 .search_all {
@@ -445,7 +453,7 @@ li {
   flex-wrap: wrap;
   width: 800px;
   margin: 10px auto;
-  /* height: 80vh; */
+  height: 70vh;
   overflow: scroll;
   padding: 10px;
   /* background: #FFF; */
@@ -488,6 +496,11 @@ li {
   font-weight: bold;
 }
 
+.search_conditions {
+  cursor: pointer;
+  border: 1px bold #000;
+}
+
 .search_conditions span {
   cursor: pointer;
 }
@@ -504,6 +517,7 @@ li {
 
 .subject_edit_btn::after {
   content: "∨";
+  margin-left: 30px;
 }
 
 .subject_edit_btn.active::after {
@@ -535,8 +549,10 @@ li {
   height: 50px;
   border-radius: 15px;
   outline: 0;
-  background: #eee;
+  background: #E0E5E9;
   width: 100%;
+  border: none;
+  padding: 10px;
 }
 
 .profile_name {
@@ -548,8 +564,10 @@ li {
   height: 40px;
   border-radius: 15px;
   outline: 0;
-  background: #eee;
+  background: #E0E5E9;
   width: 30%;
+  border: none;
+  padding: 10px;
 }
 
 .search_area {
@@ -568,25 +586,54 @@ li {
   padding: 5px;
   text-align: center;
   color: #fff;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 .search_reset {
   text-align: center;
+  margin-top: 20px;
 }
 
 .add_search {
   position: relative;
 }
 
+.search_conditions {
+  border-bottom: solid #9E9E9E;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
 .search_conditions::after {
   content: "∨";
   position: absolute;
+  right: 0;
 }
 
 .search_conditions.active::after {
   content: "∧";
 }
 
+.reserve_list table tr:nth-child(even) td {
+  background: #fff;
+  padding: 10px;
+}
+
 .reserve_list table tr:nth-child(odd) td {
   background: #E5F6FA;
+  padding: 10px;
+}
+
+.btn_cancel {
+  font-size: 12px;
+  margin-left: 50%;
+  color: #fff;
+  background-color: red;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.btn_cancel:hover {
+  background-color: #dc3545;
 }
