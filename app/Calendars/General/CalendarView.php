@@ -69,7 +69,7 @@ class CalendarView{
           if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
             $html[] = '<p class="m-auto p-0 w-75 day-sat day-sun" style="font-size:12px"></p>';
             //▼追加
-            $html[] = '<p>'.$reservePart.'参加</p>';
+            $html[] = '<p class="text-black">'.$reservePart.'参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{//未来だったら ▼追加 属性:part
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="reserve_date" style="font-size:12px" value01="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part='.$reservePart.' value02="'.$day->authReserveDate($day->everyDay())->first()->id.'">'.$reservePart.'</button>';
@@ -101,7 +101,7 @@ class CalendarView{
           //▼追加
           //予約していないエリア
            if($startDay <= $day->everyDay() && $toDay > $day->everyDay()){//過去だったら
-           $html[] = '<p>受付終了</p>';
+           $html[] = '<p class="text-black">受付終了</p>';
            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
            }else{//未来だったら
            $html[] = $day->selectPart($day->everyDay());
