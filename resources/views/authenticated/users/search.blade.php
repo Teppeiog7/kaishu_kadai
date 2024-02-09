@@ -104,7 +104,7 @@
             <label>選択科目</label>
             <!-- ▼追加 -->
             <ul>
-              <li>
+              <li style="display: flex;">
                 @foreach($subjects as $subject)
                 <div class="selected_subjects">
                   <label>{{ $subject->subject }}</label>

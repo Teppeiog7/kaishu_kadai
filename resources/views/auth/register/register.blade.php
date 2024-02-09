@@ -12,49 +12,51 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Oswald:wght@200&display=swap" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: #ECF1F6;">
   <form action="{{ route('registerPost') }}" method="POST">
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;background: #ECF1F6;">
+    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
       <!-- ▼classのp-3削除 -->
       <div class="w-25 vh-75 border form_register" style="background: white;font-weight: bold; padding:50px;">
         <div class="register_form">
           <div class="d-flex mt-3" style="justify-content:space-between">
-            <div class="" style="width:50%;">
+            <div class="" style="width: 45%;">
               @error('over_name')
               <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
               @enderror
               <label class="d-block m-0" style="font-size:13px">姓</label>
-              <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
+              <div class="border-bottom border-primary" style="">
+                <input type="text" style="width: 100%;" class="border-0 over_name" name="over_name">
               </div>
             </div>
-            <div class="" style="">
+            <span style="display:block; width:10%;"></span>
+            <div class="" style="width: 45%;">
               @error('under_name')
               <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
               @enderror
               <label class=" d-block m-0" style="font-size:13px">名</label>
-              <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
+              <div class="border-bottom border-primary" style="">
+                <input type="text" style="width: 100%;" class="border-0 under_name" name="under_name">
               </div>
             </div>
           </div>
           <div class="d-flex mt-3" style="justify-content:space-between">
-            <div class="" style="width:50%">
+            <div class="" style="width: 45%;">
               @error('over_name_kana')
               <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
               @enderror
               <label class="d-block m-0" style="font-size:13px">セイ</label>
-              <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana">
+              <div class="border-bottom border-primary" style="">
+                <input type="text" style="width: 100%;" class="border-0 over_name_kana" name="over_name_kana">
               </div>
             </div>
-            <div class="" style="">
+            <span style="display:block; width:10%;"></span>
+            <div class="" style="width: 45%;">
               @error('under_name_kana')
               <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
               @enderror
               <label class="d-block m-0" style="font-size:13px">メイ</label>
-              <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana">
+              <div class="border-bottom border-primary">
+                <input type="text" style="width: 100%;" class="border-0 under_name_kana" name="under_name_kana">
               </div>
             </div>
           </div>
