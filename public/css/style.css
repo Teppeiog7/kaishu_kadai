@@ -19,7 +19,7 @@ li {
 /* サイドバー */
 .sidebar {
   width: 220px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
   padding: 10px;
@@ -298,7 +298,7 @@ li {
 
 .category_btn:nth-child(2) {
   width: 1%;
-  background-color: #fff;
+  background-color: #ECF1F6;
 }
 
 .category_btn:nth-child(3) {
@@ -637,4 +637,8 @@ li {
 
 .btn_cancel:hover {
   background-color: #dc3545;
+}
+
+.selected_subjects {
+  margin-right: 10px;
 }

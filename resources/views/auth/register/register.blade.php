@@ -14,11 +14,12 @@
 </head>
 <body style="background: #ECF1F6;">
   <form action="{{ route('registerPost') }}" method="POST">
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
+    <!-- ▼classのvh-100削除 -->
+    <div class="w-100 d-flex" style="align-items:center; justify-content:center;">
       <!-- ▼classのp-3削除 -->
-      <div class="w-25 vh-75 border form_register" style="background: white;font-weight: bold; padding:50px;">
+      <div class="w-25 vh-75 border form_register" style="background: white;font-weight: bold; padding:50px; margin-top: 50px;">
         <div class="register_form">
-          <div class="d-flex mt-3" style="justify-content:space-between">
+          <div class="d-flex mt-3" style="justify-content:space-between width: 100%;">
             <div class="" style="width: 45%;">
               @error('over_name')
               <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
@@ -39,7 +40,7 @@
               </div>
             </div>
           </div>
-          <div class="d-flex mt-3" style="justify-content:space-between">
+          <div class="d-flex mt-3" style="justify-content:space-between width: 100%;">
             <div class="" style="width: 45%;">
               @error('over_name_kana')
               <p style="color:red; font-weight:bold;">{{ $message }}</p> <!-- エラーメッセージを表示 -->
